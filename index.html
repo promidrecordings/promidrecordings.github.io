@@ -4,16 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>PrOmid | Architect of Sound</title>
-    <meta name="description" content="PrOmid (امید محرم‌زاده) – آهنگساز موسیقی الکترونیک و معمار صدا با بیش از ۵۰ آلبوم و ۲۰۰ قطعه موسیقی در سطح بین‌المللی." />
+    <meta name="description" content="PrOmid (Omid Mahramzadeh) – Electronic Music Composer and Sound Architect with over 50 albums and 200 compositions worldwide." />
     <link rel="canonical" href="https://www.promid.ir" />
     
     <meta property="og:title" content="PrOmid | Architect of Sound" />
-    <meta property="og:description" content="PrOmid (امید محرم‌زاده) – آهنگساز موسیقی الکترونیک و معمار صدا." />
+    <meta property="og:description" content="PrOmid (Omid Mahramzadeh) – Electronic Music Composer and Sound Architect." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.promid.ir" />
     
+    <!-- ===== FONTS ===== -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     
     <style>
@@ -30,7 +33,24 @@
             color: #e5e5ea;
         }
         
-        /* ===== CANVAS 3D (اتمسفر) ===== */
+        /* ===== FONTS ===== */
+        .font-albori {
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.2em;
+            font-weight: 500;
+        }
+        .font-neon {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+        .font-luxury {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+        }
+        
+        /* ===== CANVAS 3D ===== */
         #canvas-container {
             position: fixed;
             top: 0;
@@ -68,7 +88,6 @@
             gap: 6px;
             background: rgba(255,255,255,0.06);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             padding: 5px;
             border-radius: 34px;
             border: 1px solid rgba(255,255,255,0.06);
@@ -116,12 +135,11 @@
         }
         
         .nav-glass {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.05);
             backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
             overflow: hidden;
             transition: all 0.6s ease;
             height: 68px;
@@ -144,7 +162,6 @@
             gap: 10px;
         }
         
-        /* ===== Hamburger ===== */
         .hamburger {
             display: flex;
             flex-direction: column;
@@ -154,9 +171,7 @@
             border-radius: 12px;
             transition: background 0.2s;
         }
-        .hamburger:hover {
-            background: rgba(255,255,255,0.05);
-        }
+        .hamburger:hover { background: rgba(255,255,255,0.05); }
         .hamburger-line {
             width: 24px;
             height: 2.5px;
@@ -172,30 +187,27 @@
             transform: rotate(-45deg) translate(5px, -6px);
         }
         
-        /* ===== Logo ===== */
+        /* ===== LOGO ===== */
         .logo {
-            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.2em;
+            font-weight: 500;
             font-size: 1.2rem;
-            letter-spacing: -0.3px;
             color: #e5e5ea;
             transition: color 0.3s;
             cursor: pointer;
             padding: 6px 10px;
             border-radius: 10px;
-            font-family: 'Playfair Display', serif;
         }
-        .logo:hover {
-            color: #7c3aed;
-        }
+        .logo:hover { color: #7c3aed; }
+        .logo.hidden-logo { display: none; }
         
-        /* ===== Nav Right ===== */
         .nav-right {
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        /* ===== Audio Toggle (Speaker Only) ===== */
         .audio-toggle {
             display: flex;
             align-items: center;
@@ -221,7 +233,6 @@
         }
         .audio-toggle audio { display: none; }
         
-        /* ===== Nav Content ===== */
         .nav-content {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -313,7 +324,6 @@
             min-height: calc(100vh - 80px);
         }
         
-        /* ===== SECTIONS ===== */
         section {
             padding: 60px 0;
             opacity: 0;
@@ -337,7 +347,6 @@
             margin-bottom: 0.5rem;
             color: #ffffff;
         }
-        
         .section-sub {
             font-size: 1.1rem;
             color: rgba(255,255,255,0.3);
@@ -345,7 +354,6 @@
             padding-bottom: 1rem;
             border-bottom: 1px solid rgba(255,255,255,0.04);
         }
-        
         .text-gradient {
             background: linear-gradient(to right, #7c3aed, #a78bfa, #7c3aed);
             background-size: 200% auto;
@@ -371,11 +379,24 @@
             padding: 30px 0;
         }
         .hero-name {
-            font-size: 7rem;
-            font-weight: 350;
-            letter-spacing: -0.03em;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            font-size: 9.1rem;
             line-height: 1;
             color: #e5e5ea;
+        }
+        .hero-sub-luxury {
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.2em;
+            font-weight: 500;
+            font-size: 1.6rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 4px;
+            margin-bottom: 30px;
+        }
+        .hero-sub-luxury .highlight {
+            color: #a78bfa;
         }
         .hero-sub {
             font-size: 1.3rem;
@@ -383,27 +404,15 @@
             margin-top: 6px;
             margin-bottom: 30px;
         }
-        .hero-sub-luxury {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.6rem;
-            color: rgba(255,255,255,0.5);
-            margin-top: 2px;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-        }
-        .hero-sub-luxury .highlight {
-            color: #a78bfa;
-        }
         
         .hero-social {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
         }
         .hero-social a {
-            font-size: 1.4rem;
+            font-size: 1.12rem;
             color: rgba(255,255,255,0.2);
             transition: all 0.3s ease;
             border-bottom: 2px solid transparent;
@@ -415,52 +424,16 @@
         }
         
         @media (max-width: 768px) {
-            .hero-name { font-size: 4.5rem; }
-            .hero-sub { font-size: 1.1rem; }
+            .hero-name { font-size: 5.85rem; }
             .hero-sub-luxury { font-size: 1.3rem; }
-            .hero-social { gap: 14px; }
-            .hero-social a { font-size: 1.2rem; }
+            .hero-sub { font-size: 1.1rem; }
+            .hero-social a { font-size: 0.96rem; }
         }
         @media (max-width: 480px) {
-            .hero-name { font-size: 3.2rem; }
-            .hero-sub { font-size: 0.95rem; }
+            .hero-name { font-size: 4.16rem; }
             .hero-sub-luxury { font-size: 1.1rem; }
-            .hero-social { gap: 12px; }
-            .hero-social a { font-size: 1rem; }
-        }
-        
-        /* ===== STATS ===== */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 24px;
-            padding: 40px 30px;
-            border: 1px solid rgba(255,255,255,0.04);
-        }
-        .stat-item { text-align: center; }
-        .stat-number {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #7c3aed;
-            display: block;
-        }
-        .stat-label {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.3);
-            margin-top: 6px;
-        }
-        
-        @media (max-width: 768px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 30px 20px; }
-            .stat-number { font-size: 2.2rem; }
-            .stat-label { font-size: 0.9rem; }
-        }
-        @media (max-width: 480px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 20px 14px; }
-            .stat-number { font-size: 1.8rem; }
-            .stat-label { font-size: 0.8rem; }
+            .hero-sub { font-size: 0.95rem; }
+            .hero-social a { font-size: 0.8rem; }
         }
         
         /* ===== MUSIC LINKS ===== */
@@ -498,7 +471,6 @@
             margin-bottom: 20px;
             color: #e5e5ea;
         }
-        
         .blockquote {
             font-style: italic;
             font-size: 1.3rem;
@@ -508,7 +480,6 @@
             background: rgba(255,255,255,0.02);
             border-radius: 0 14px 14px 0;
         }
-        
         .bio-list {
             list-style: none;
             padding: 0;
@@ -529,7 +500,6 @@
             font-size: 0.7rem;
             top: 8px;
         }
-        
         .bio-tags {
             display: flex;
             flex-wrap: wrap;
@@ -550,7 +520,6 @@
             color: #fff;
             transform: translateY(-2px);
         }
-        
         .bio-highlights {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -716,7 +685,6 @@
         }
         .footer a:hover { opacity: 0.7; }
         
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .section-title { font-size: 2.4rem; }
             .bio-text { font-size: 1rem; }
@@ -749,7 +717,7 @@
 </head>
 <body>
 
-    <!-- ===== CANVAS 3D (اتمسفر) ===== -->
+    <!-- ===== CANVAS 3D ===== -->
     <div id="canvas-container"></div>
 
     <!-- ===== LANGUAGE TOGGLE ===== -->
@@ -767,7 +735,8 @@
                         <div class="hamburger-line"></div>
                         <div class="hamburger-line"></div>
                     </div>
-                    <div class="logo" id="navHome" data-i18n-logo="امید محرم‌زاده">امید محرم‌زاده</div>
+                    <!-- LOGO: در فارسی مخفی، در انگلیسی با فونت Albori نمایش داده می‌شود -->
+                    <div class="logo hidden-logo" id="navHome" data-i18n-logo="OMID MAHRAMZADEH">OMID MAHRAMZADEH</div>
                 </div>
                 <div class="nav-right">
                     <div class="audio-toggle" id="audioToggle" title="Music On/Off">
@@ -779,55 +748,30 @@
                 </div>
             </div>
             <div class="nav-content" id="navContent">
-                <!-- About Card -->
                 <div class="nav-card">
                     <div class="nav-card-label" data-i18n="about">درباره</div>
                     <div class="nav-card-links">
-                        <button class="nav-link" data-page="bio">
-                            <span class="link-icon">←</span> <span data-i18n="bio">بیوگرافی</span>
-                        </button>
-                        <button class="nav-link" data-page="media">
-                            <span class="link-icon">←</span> <span data-i18n="media">مدیا</span>
-                        </button>
-                        <button class="nav-link" data-page="therapy">
-                            <span class="link-icon">←</span> <span data-i18n="therapy">موسیقی درمانی</span>
-                        </button>
+                        <button class="nav-link" data-page="bio"><span class="link-icon">←</span> <span data-i18n="bio">بیوگرافی</span></button>
+                        <button class="nav-link" data-page="media"><span class="link-icon">←</span> <span data-i18n="media">مدیا</span></button>
+                        <button class="nav-link" data-page="therapy"><span class="link-icon">←</span> <span data-i18n="therapy">موسیقی درمانی</span></button>
                     </div>
                 </div>
-                <!-- Music Card -->
                 <div class="nav-card">
                     <div class="nav-card-label" data-i18n="music">موسیقی</div>
                     <div class="nav-card-links">
-                        <a href="https://open.spotify.com/artist/3AjD58hx65rhq8bzCcWxeb" target="_blank" class="nav-link">
-                            <span class="link-icon">←</span> Spotify
-                        </a>
-                        <a href="https://music.apple.com/us/artist/promid/339408591" target="_blank" class="nav-link">
-                            <span class="link-icon">←</span> iTunes
-                        </a>
-                        <a href="https://www.youtube.com/user/promidmusicofficial" target="_blank" class="nav-link">
-                            <span class="link-icon">←</span> YouTube
-                        </a>
-                        <a href="https://soundcloud.com/promid" target="_blank" class="nav-link">
-                            <span class="link-icon">←</span> SoundCloud
-                        </a>
+                        <a href="https://open.spotify.com/artist/3AjD58hx65rhq8bzCcWxeb" target="_blank" class="nav-link"><span class="link-icon">←</span> Spotify</a>
+                        <a href="https://music.apple.com/us/artist/promid/339408591" target="_blank" class="nav-link"><span class="link-icon">←</span> iTunes</a>
+                        <a href="https://www.youtube.com/user/promidmusicofficial" target="_blank" class="nav-link"><span class="link-icon">←</span> YouTube</a>
+                        <a href="https://soundcloud.com/promid" target="_blank" class="nav-link"><span class="link-icon">←</span> SoundCloud</a>
                     </div>
                 </div>
-                <!-- Connect Card -->
                 <div class="nav-card">
                     <div class="nav-card-label" data-i18n="connect">ارتباط</div>
                     <div class="nav-card-links">
-                        <a href="mailto:omidmahramzadeh@gmail.com" class="nav-link">
-                            <span class="link-icon">←</span> <span data-i18n="email">ایمیل</span>
-                        </a>
-                        <a href="https://www.instagram.com/promidmusic/" target="_blank" class="nav-link">
-                            <span class="link-icon">←</span> Instagram
-                        </a>
-                        <a href="https://www.facebook.com/promidmusic/" target="_blank" class="nav-link">
-                            <span class="link-icon">←</span> Facebook
-                        </a>
-                        <a href="https://www.linkedin.com/in/omid-mahramzadeh-72129276/" target="_blank" class="nav-link">
-                            <span class="link-icon">←</span> LinkedIn
-                        </a>
+                        <a href="mailto:omidmahramzadeh@gmail.com" class="nav-link"><span class="link-icon">←</span> <span data-i18n="email">ایمیل</span></a>
+                        <a href="https://www.instagram.com/promidmusic/" target="_blank" class="nav-link"><span class="link-icon">←</span> Instagram</a>
+                        <a href="https://www.facebook.com/promidmusic/" target="_blank" class="nav-link"><span class="link-icon">←</span> Facebook</a>
+                        <a href="https://www.linkedin.com/in/omid-mahramzadeh-72129276/" target="_blank" class="nav-link"><span class="link-icon">←</span> LinkedIn</a>
                     </div>
                 </div>
             </div>
@@ -841,33 +785,24 @@
             <!-- ===== HERO ===== -->
             <section class="hero" id="home">
                 <h1 class="hero-name">PrOmid</h1>
+                <!-- زیر PrOmid: در فارسی و انگلیسی با فونت Albori -->
                 <div class="hero-sub-luxury" data-i18n="hero-luxury">
                     <span class="highlight">امید</span> محرم‌زاده
                 </div>
                 <p class="hero-sub" data-i18n="architect">Architect of Sound</p>
                 <div class="hero-social">
-                    <a href="https://soundcloud.com/promid" target="_blank" aria-label="SoundCloud"><i class="fab fa-soundcloud"></i></a>
-                    <a href="https://openlab.fm/radio/shows/global-frequency" target="_blank" aria-label="Global Frequency"><i class="fas fa-broadcast"></i></a>
-                    <a href="https://music.apple.com/us/artist/promid/339408591" target="_blank" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
-                    <a href="https://www.youtube.com/user/promidmusicofficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.instagram.com/promidmusic/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/promidmusic/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.linkedin.com/in/omid-mahramzadeh-72129276/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://t.me/PROMIDMUSIC" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-                    <a href="https://x.com/promidmusic" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-                    <a href="mailto:omidmahramzadeh@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.imdb.com/name/nm12805757/" target="_blank" aria-label="IMDb"><i class="fab fa-imdb"></i></a>
-                    <a href="https://open.spotify.com/artist/3AjD58hx65rhq8bzCcWxeb" target="_blank" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
-                </div>
-            </section>
-
-            <!-- ===== STATS ===== -->
-            <section>
-                <div class="stats-grid">
-                    <div class="stat-item"><span class="stat-number">+۲۰</span><span class="stat-label" data-i18n="stat1">سال تجربه</span></div>
-                    <div class="stat-item"><span class="stat-number">+۵۰</span><span class="stat-label" data-i18n="stat2">آلبوم منتشرشده</span></div>
-                    <div class="stat-item"><span class="stat-number">+۲۰۰</span><span class="stat-label" data-i18n="stat3">اثر بین‌المللی</span></div>
-                    <div class="stat-item"><span class="stat-number">۲۰۰۸</span><span class="stat-label" data-i18n="stat4">همکاری با Buddha-Bar</span></div>
+                    <a href="https://soundcloud.com/promid" target="_blank"><i class="fab fa-soundcloud"></i></a>
+                    <a href="https://openlab.fm/radio/shows/global-frequency" target="_blank"><i class="fas fa-broadcast"></i></a>
+                    <a href="https://music.apple.com/us/artist/promid/339408591" target="_blank"><i class="fab fa-apple"></i></a>
+                    <a href="https://www.youtube.com/user/promidmusicofficial" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/promidmusic/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/promidmusic/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/omid-mahramzadeh-72129276/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://t.me/PROMIDMUSIC" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://x.com/promidmusic" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                    <a href="mailto:omidmahramzadeh@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.imdb.com/name/nm12805757/" target="_blank"><i class="fab fa-imdb"></i></a>
+                    <a href="https://open.spotify.com/artist/3AjD58hx65rhq8bzCcWxeb" target="_blank"><i class="fab fa-spotify"></i></a>
                 </div>
             </section>
 
@@ -1153,10 +1088,6 @@
                     email: 'ایمیل',
                     architect: 'Architect of Sound',
                     'hero-luxury': '<span class="highlight">امید</span> محرم‌زاده',
-                    stat1: 'سال تجربه',
-                    stat2: 'آلبوم منتشرشده',
-                    stat3: 'اثر بین‌المللی',
-                    stat4: 'همکاری با Buddha-Bar',
                     'music-title': 'موسیقی',
                     'music-desc': 'آثار PrOmid را در پلتفرم‌های پخش موسیقی دنبال کنید.',
                     'bio-title': 'درباره PrOmid',
@@ -1207,7 +1138,7 @@
                     'connect-title': 'در ارتباط باشید',
                     'cta-text': 'علاقه‌مند به یک جلسهٔ موسیقی‌درمانی اختصاصی یا همکاری خلاقانه هستید؟',
                     'cta-btn': 'تماس با PrOmid',
-                    'logo-text': 'امید محرم‌زاده'
+                    'logo-text': 'OMID MAHRAMZADEH'
                 },
                 en: {
                     about: 'About',
@@ -1218,11 +1149,7 @@
                     connect: 'Connect',
                     email: 'Email',
                     architect: 'Architect of Sound',
-                    'hero-luxury': 'Omid Mahramzadeh',
-                    stat1: 'Years of Experience',
-                    stat2: 'Albums Released',
-                    stat3: 'International Works',
-                    stat4: 'Collaboration with Buddha-Bar',
+                    'hero-luxury': '<span class="highlight">OMID</span> MAHRAMZADEH',
                     'music-title': 'Music',
                     'music-desc': 'Follow PrOmid\'s music on streaming platforms.',
                     'bio-title': 'About PrOmid',
@@ -1287,9 +1214,12 @@
                         el.innerHTML = t[lang][key];
                     }
                 });
-                // Update logo
+                // Logo: در فارسی مخفی، در انگلیسی با فونت Albori نمایش داده می‌شود
                 const logo = document.getElementById('navHome');
-                if (t[lang] && t[lang]['logo-text']) {
+                if (lang === 'fa') {
+                    logo.classList.add('hidden-logo');
+                } else {
+                    logo.classList.remove('hidden-logo');
                     logo.textContent = t[lang]['logo-text'];
                 }
                 document.getElementById('langFa').classList.toggle('active', lang === 'fa');
@@ -1347,7 +1277,7 @@
             });
 
             // ====================================================
-            // AUDIO TOGGLE (Speaker Only)
+            // AUDIO TOGGLE
             // ====================================================
             const audioToggle = document.getElementById('audioToggle');
             const audioIcon = document.getElementById('audioIcon');

@@ -265,20 +265,34 @@
             if (!response.ok) throw new Error('فایل tracks.json پیدا نشد');
             tracks = await response.json();
             renderPlaylist();
-            // بررسی پارامتر track در URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const trackParam = urlParams.get('track');
-            if (trackParam) {
-                const index = tracks.findIndex(t => t.id == trackParam);
-                if (index !== -1) currentTrackIndex = index;
+            
+            // بررسی مسیر URL برای لینک‌های زیبا
+            const path = window.location.pathname;
+            const slug = path.split('/').pop();
+            
+            if (slug && slug !== 'player' && slug !== '') {
+                const index = tracks.findIndex(t => t.slug === slug);
+                if (index !== -1) {
+                    currentTrackIndex = index;
+                }
+            } else {
+                // بررسی پارامتر track برای سازگاری با لینک‌های قدیمی
+                const urlParams = new URLSearchParams(window.location.search);
+                const trackParam = urlParams.get('track');
+                if (trackParam) {
+                    const index = tracks.findIndex(t => t.id == trackParam);
+                    if (index !== -1) currentTrackIndex = index;
+                }
             }
+            
             loadTrack(currentTrackIndex);
         } catch (error) {
             console.error('خطا در بارگذاری پلی‌لیست:', error);
             // داده‌های نمونه در صورت خطا
             tracks = [
-                { id: 1, title: 'Guitar Del Sol', artist: 'PrOmid', slug: 'guitar-del-sol', cover: 'assets/track1.jpg', src: 'assets/track1.mp3' },
-                { id: 2, title: 'Pause Hour', artist: 'PrOmid', slug: 'pause-hour', cover: 'assets/track2.jpg', src: 'assets/track2.mp3' }
+                { id: 1, title: 'LAST LETTER', artist: 'PrOmid', slug: 'last-letter', cover: 'assets/last-letter.jpg', src: 'assets/last-letter.mp3' },
+                { id: 2, title: 'PARAMATMA', artist: 'PrOmid', slug: 'paramatma', cover: 'assets/paramatma.jpg', src: 'assets/paramatma.mp3' },
+                { id: 3, title: 'solhe abadi', artist: 'PrOmid', slug: 'solhe-abadi', cover: 'assets/solhe-abadi.jpg', src: 'assets/solhe-abadi.mp3' }
             ];
             renderPlaylist();
             loadTrack(0);
@@ -301,10 +315,9 @@
         if (isPlaying) {
             audio.play().catch(() => {});
         }
-        // به‌روزرسانی URL بدون رفرش صفحه
-        const url = new URL(window.location);
-        url.searchParams.set('track', track.id);
-        window.history.replaceState({}, '', url);
+        // به‌روزرسانی URL با لینک زیبا
+        const newUrl = `/player/${track.slug}`;
+        window.history.replaceState({}, '', newUrl);
     }
 
     // ============================================
@@ -408,15 +421,14 @@
     }
 
     // ============================================
-    // لینک اشتراک‌گذاری
+    // لینک اشتراک‌گذاری (به روز شده با لینک زیبا)
     // ============================================
     function updateShareLink() {
         const track = tracks[currentTrackIndex];
         if (track) {
-            const url = new URL(window.location);
-            url.searchParams.set('track', track.id);
-            trackLink.href = url.toString();
-            trackLink.textContent = url.toString();
+            const url = `https://www.promid.ir/player/${track.slug}`;
+            trackLink.href = url;
+            trackLink.textContent = url;
         }
     }
 
@@ -439,8 +451,10 @@
     // ============================================
     loadTracks();
 
-    // پخش خودکار در صورت وجود پارامتر
-    if (window.location.search.includes('track')) {
+    // پخش خودکار در صورت وجود لینک زیبا
+    const path = window.location.pathname;
+    const slug = path.split('/').pop();
+    if (slug && slug !== 'player' && slug !== '') {
         setTimeout(() => {
             if (!isPlaying) togglePlay();
         }, 1000);

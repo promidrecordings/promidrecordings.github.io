@@ -2,57 +2,451 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROMID Recordings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>پلیر | PROMID Recordings</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Inter', sans-serif;
             background: #121212;
             color: #fff;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            text-align: center;
             padding: 20px;
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .player-container {
+            max-width: 420px;
+            width: 100%;
+            background: #181818;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
-        p {
+        .artwork {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            background: #282828;
+        }
+        .artwork img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .track-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .track-info h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .track-info p {
             color: #b3b3b3;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
+            font-size: 14px;
         }
-        .btn {
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .progress-container span {
+            font-size: 12px;
+            color: #b3b3b3;
+            min-width: 38px;
+        }
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: #4a4a4a;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #1db954;
+            border-radius: 4px;
+            transition: width 0.1s;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+        .controls button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.2s;
+        }
+        .controls button:hover {
+            transform: scale(1.1);
+            color: #1db954;
+        }
+        .controls .play-btn {
             background: #1db954;
             color: #000;
-            padding: 14px 36px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: 0.3s;
-            display: inline-block;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(29,185,84,0.3);
         }
-        .btn:hover {
-            background: #1ed760;
+        .controls .play-btn:hover {
             transform: scale(1.05);
+            background: #1ed760;
         }
-        .footer {
-            margin-top: 40px;
-            color: #555;
-            font-size: 0.8rem;
+        .playlist {
+            margin-top: 20px;
+            border-top: 1px solid #282828;
+            padding-top: 16px;
+        }
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .playlist-item:hover {
+            background: #282828;
+        }
+        .playlist-item.active {
+            background: #282828;
+        }
+        .playlist-item img {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+        .playlist-item .info {
+            flex: 1;
+        }
+        .playlist-item .info h4 {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .playlist-item .info p {
+            font-size: 12px;
+            color: #b3b3b3;
+        }
+        .playlist-item .play-icon {
+            color: #b3b3b3;
+            font-size: 18px;
+        }
+        .playlist-item.active .play-icon {
+            color: #1db954;
+        }
+        .share-link {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 12px;
+            color: #b3b3b3;
+        }
+        .share-link a {
+            color: #1db954;
+            text-decoration: none;
+        }
+        @media (max-width: 480px) {
+            .player-container {
+                padding: 16px;
+            }
+            .track-info h2 {
+                font-size: 18px;
+            }
+            .controls {
+                gap: 16px;
+            }
+            .controls button {
+                font-size: 20px;
+            }
+            .controls .play-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>🎧 PROMID Recordings</h1>
-    <p>به پلیر اختصاصی ما خوش آمدید</p>
-    <a href="/player/" class="btn">ورود به پلیر</a>
-    <div class="footer">© 2026 PROMID Recordings</div>
+
+<div class="player-container" id="player">
+    <!-- کاور -->
+    <div class="artwork" id="artwork">
+        <img id="coverImage" src="" alt="Cover">
+    </div>
+
+    <!-- اطلاعات ترک -->
+    <div class="track-info">
+        <h2 id="trackTitle">عنوان ترک</h2>
+        <p id="trackArtist">نام خواننده</p>
+    </div>
+
+    <!-- نوار پیشرفت -->
+    <div class="progress-container">
+        <span id="currentTime">0:00</span>
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span id="totalTime">0:00</span>
+    </div>
+
+    <!-- کنترل‌ها -->
+    <div class="controls">
+        <button id="prevBtn" title="ترک قبلی">⏮</button>
+        <button class="play-btn" id="playBtn" title="پخش/توقف">▶</button>
+        <button id="nextBtn" title="ترک بعدی">⏭</button>
+    </div>
+
+    <!-- پلی‌لیست -->
+    <div class="playlist" id="playlist"></div>
+
+    <!-- لینک اشتراک‌گذاری -->
+    <div class="share-link" id="shareLink">
+        🔗 لینک این ترک: <a href="#" id="trackLink">https://www.promid.ir</a>
+    </div>
+</div>
+
+<!-- المنت صوتی -->
+<audio id="audioPlayer" preload="metadata"></audio>
+
+<script>
+    // ============================================
+    // داده‌های پلی‌لیست (از فایل JSON بارگذاری می‌شود)
+    // ============================================
+    let tracks = [];
+    let currentTrackIndex = 0;
+    let isPlaying = false;
+
+    // عناصر DOM
+    const audio = document.getElementById('audioPlayer');
+    const playBtn = document.getElementById('playBtn');
+    const coverImage = document.getElementById('coverImage');
+    const trackTitle = document.getElementById('trackTitle');
+    const trackArtist = document.getElementById('trackArtist');
+    const progressFill = document.getElementById('progressFill');
+    const progressBar = document.getElementById('progressBar');
+    const currentTimeEl = document.getElementById('currentTime');
+    const totalTimeEl = document.getElementById('totalTime');
+    const playlistEl = document.getElementById('playlist');
+    const trackLink = document.getElementById('trackLink');
+    const shareLink = document.getElementById('shareLink');
+
+    // ============================================
+    // بارگذاری داده‌ها از فایل JSON
+    // ============================================
+    async function loadTracks() {
+        try {
+            const response = await fetch('tracks.json');
+            if (!response.ok) throw new Error('فایل tracks.json پیدا نشد');
+            tracks = await response.json();
+            renderPlaylist();
+            // بررسی پارامتر track در URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const trackParam = urlParams.get('track');
+            if (trackParam) {
+                const index = tracks.findIndex(t => t.id == trackParam);
+                if (index !== -1) currentTrackIndex = index;
+            }
+            loadTrack(currentTrackIndex);
+        } catch (error) {
+            console.error('خطا در بارگذاری پلی‌لیست:', error);
+            // داده‌های نمونه در صورت خطا
+            tracks = [
+                { id: 1, title: 'Guitar Del Sol', artist: 'PrOmid', slug: 'guitar-del-sol', cover: 'assets/track1.jpg', src: 'assets/track1.mp3' },
+                { id: 2, title: 'Pause Hour', artist: 'PrOmid', slug: 'pause-hour', cover: 'assets/track2.jpg', src: 'assets/track2.mp3' }
+            ];
+            renderPlaylist();
+            loadTrack(0);
+        }
+    }
+
+    // ============================================
+    // بارگذاری یک ترک
+    // ============================================
+    function loadTrack(index) {
+        const track = tracks[index];
+        if (!track) return;
+        audio.src = track.src;
+        coverImage.src = track.cover;
+        trackTitle.textContent = track.title;
+        trackArtist.textContent = track.artist;
+        currentTrackIndex = index;
+        updatePlaylistActive();
+        updateShareLink();
+        if (isPlaying) {
+            audio.play().catch(() => {});
+        }
+        // به‌روزرسانی URL بدون رفرش صفحه
+        const url = new URL(window.location);
+        url.searchParams.set('track', track.id);
+        window.history.replaceState({}, '', url);
+    }
+
+    // ============================================
+    // رندر پلی‌لیست
+    // ============================================
+    function renderPlaylist() {
+        playlistEl.innerHTML = '';
+        tracks.forEach((track, index) => {
+            const item = document.createElement('div');
+            item.className = 'playlist-item';
+            item.dataset.index = index;
+            item.innerHTML = `
+                <img src="${track.cover}" alt="${track.title}">
+                <div class="info">
+                    <h4>${track.title}</h4>
+                    <p>${track.artist}</p>
+                </div>
+                <span class="play-icon">${index === currentTrackIndex ? '▶' : ''}</span>
+            `;
+            item.addEventListener('click', () => {
+                loadTrack(index);
+                if (!isPlaying) {
+                    togglePlay();
+                }
+            });
+            playlistEl.appendChild(item);
+        });
+        updatePlaylistActive();
+    }
+
+    function updatePlaylistActive() {
+        const items = playlistEl.querySelectorAll('.playlist-item');
+        items.forEach((item, index) => {
+            item.classList.toggle('active', index === currentTrackIndex);
+            const icon = item.querySelector('.play-icon');
+            if (icon) {
+                icon.textContent = (index === currentTrackIndex && isPlaying) ? '▶' : '';
+            }
+        });
+    }
+
+    // ============================================
+    // کنترل پخش
+    // ============================================
+    function togglePlay() {
+        if (audio.paused) {
+            audio.play();
+            isPlaying = true;
+            playBtn.textContent = '⏸';
+            playBtn.classList.add('playing');
+        } else {
+            audio.pause();
+            isPlaying = false;
+            playBtn.textContent = '▶';
+            playBtn.classList.remove('playing');
+        }
+        updatePlaylistActive();
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+
+    // ============================================
+    // دکمه‌های قبلی و بعدی
+    // ============================================
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        const newIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+        loadTrack(newIndex);
+        if (!isPlaying) togglePlay();
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        const newIndex = (currentTrackIndex + 1) % tracks.length;
+        loadTrack(newIndex);
+        if (!isPlaying) togglePlay();
+    });
+
+    // ============================================
+    // نوار پیشرفت
+    // ============================================
+    audio.addEventListener('timeupdate', () => {
+        const percent = (audio.currentTime / audio.duration) * 100 || 0;
+        progressFill.style.width = percent + '%';
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+        totalTimeEl.textContent = formatTime(audio.duration);
+    });
+
+    progressBar.addEventListener('click', (e) => {
+        const rect = progressBar.getBoundingClientRect();
+        const percent = (e.clientX - rect.left) / rect.width;
+        audio.currentTime = percent * audio.duration;
+    });
+
+    function formatTime(seconds) {
+        if (isNaN(seconds)) return '0:00';
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
+        return min + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    // ============================================
+    // لینک اشتراک‌گذاری
+    // ============================================
+    function updateShareLink() {
+        const track = tracks[currentTrackIndex];
+        if (track) {
+            const url = new URL(window.location);
+            url.searchParams.set('track', track.id);
+            trackLink.href = url.toString();
+            trackLink.textContent = url.toString();
+        }
+    }
+
+    // ============================================
+    // Media Session API (صفحه قفل)
+    // ============================================
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.setActionHandler('play', () => { if (audio.paused) togglePlay(); });
+        navigator.mediaSession.setActionHandler('pause', () => { if (!audio.paused) togglePlay(); });
+        navigator.mediaSession.setActionHandler('previoustrack', () => {
+            document.getElementById('prevBtn').click();
+        });
+        navigator.mediaSession.setActionHandler('nexttrack', () => {
+            document.getElementById('nextBtn').click();
+        });
+    }
+
+    // ============================================
+    // شروع برنامه
+    // ============================================
+    loadTracks();
+
+    // پخش خودکار در صورت وجود پارامتر
+    if (window.location.search.includes('track')) {
+        setTimeout(() => {
+            if (!isPlaying) togglePlay();
+        }, 1000);
+    }
+
+    console.log('🎵 پلیر PROMID Recordings با موفقیت راه‌اندازی شد!');
+</script>
 </body>
 </html>

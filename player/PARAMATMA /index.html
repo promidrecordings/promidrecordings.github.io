@@ -8,13 +8,8 @@
     <title>PARAMATMA | PrOmid</title>
 
     <style>
-        /* ----- ریست و تنظیمات پایه ----- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ----- Reset & Base ----- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
             width: 100%;
             height: 100%;
@@ -30,7 +25,7 @@
             left: 0;
         }
 
-        /* ----- کارت پلیر تمام‌صفحه ----- */
+        /* ----- Player Card (Fullscreen) ----- */
         .player-card {
             background: rgba(24, 24, 24, 0.85);
             backdrop-filter: blur(20px);
@@ -50,7 +45,7 @@
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* ----- هدر ----- */
+        /* ----- Header ----- */
         .player-header {
             display: flex;
             justify-content: flex-start;
@@ -58,7 +53,6 @@
             margin-bottom: 22px;
             flex-shrink: 0;
         }
-
         .player-header .brand {
             color: #fff;
             font-size: 15px;
@@ -66,12 +60,9 @@
             letter-spacing: -0.2px;
             opacity: 0.8;
         }
+        .player-header .brand span { color: #1db954; }
 
-        .player-header .brand span {
-            color: #1db954;
-        }
-
-        /* ----- کاور آلبوم ----- */
+        /* ----- Artwork ----- */
         .artwork-wrapper {
             position: relative;
             width: 100%;
@@ -84,7 +75,6 @@
             background: #1f1f1f;
             flex-shrink: 0;
         }
-
         .artwork-wrapper img {
             position: absolute;
             top: 0;
@@ -96,13 +86,12 @@
             opacity: 1;
         }
 
-        /* ----- اطلاعات آهنگ ----- */
+        /* ----- Track Info ----- */
         .track-info {
             margin-bottom: 24px;
             text-align: center;
             flex-shrink: 0;
         }
-
         .track-info .title {
             color: #fff;
             font-size: 21px;
@@ -110,14 +99,13 @@
             letter-spacing: -0.5px;
             margin-bottom: 4px;
         }
-
         .track-info .artist {
             color: #b0b0b0;
             font-size: 15px;
             font-weight: 400;
         }
 
-        /* ===== نوار پیشرفت و کنترل‌ها ===== */
+        /* ----- Progress Bar ----- */
         .progress-section {
             display: flex;
             align-items: center;
@@ -126,7 +114,6 @@
             direction: ltr;
             flex-shrink: 0;
         }
-
         .progress-section .time {
             color: #9a9a9a;
             font-size: 12px;
@@ -135,7 +122,6 @@
             font-variant-numeric: tabular-nums;
             text-align: center;
         }
-
         .progress-track {
             flex: 1;
             height: 4px;
@@ -146,11 +132,7 @@
             transition: height 0.2s;
             direction: ltr;
         }
-
-        .progress-track:hover {
-            height: 6px;
-        }
-
+        .progress-track:hover { height: 6px; }
         .progress-fill {
             height: 100%;
             width: 0%;
@@ -159,7 +141,6 @@
             position: relative;
             transition: width 0.05s linear;
         }
-
         .progress-fill::after {
             content: '';
             position: absolute;
@@ -174,12 +155,9 @@
             transition: opacity 0.2s;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
         }
+        .progress-track:hover .progress-fill::after { opacity: 1; }
 
-        .progress-track:hover .progress-fill::after {
-            opacity: 1;
-        }
-
-        /* ----- دکمه‌های کنترل ----- */
+        /* ----- Controls ----- */
         .controls {
             display: flex;
             justify-content: center;
@@ -188,7 +166,6 @@
             margin-bottom: 22px;
             flex-shrink: 0;
         }
-
         .controls button {
             background: none;
             border: none;
@@ -204,13 +181,11 @@
             width: 44px;
             height: 44px;
         }
-
         .controls button:hover {
             color: #fff;
             transform: scale(1.04);
             background: rgba(255, 255, 255, 0.04);
         }
-
         .controls .play-btn {
             background: #1db954;
             color: #000;
@@ -221,23 +196,18 @@
             box-shadow: 0 8px 30px rgba(29, 185, 84, 0.35);
             transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
         .controls .play-btn:hover {
             transform: scale(1.05);
             background: #1ed760;
             box-shadow: 0 8px 40px rgba(29, 185, 84, 0.5);
         }
-
-        .controls .play-btn.playing {
-            animation: pulse-ring 1.8s infinite;
-        }
-
+        .controls .play-btn.playing { animation: pulse-ring 1.8s infinite; }
         @keyframes pulse-ring {
             0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.4); }
             100% { box-shadow: 0 0 0 20px rgba(29, 185, 84, 0); }
         }
 
-        /* ----- کنترل صدا ----- */
+        /* ----- Volume ----- */
         .volume-section {
             display: flex;
             align-items: center;
@@ -248,12 +218,7 @@
             direction: ltr;
             flex-shrink: 0;
         }
-
-        .volume-section .icon {
-            color: #9a9a9a;
-            font-size: 17px;
-        }
-
+        .volume-section .icon { color: #9a9a9a; font-size: 17px; }
         .volume-track {
             flex: 1;
             height: 4px;
@@ -263,7 +228,6 @@
             cursor: pointer;
             direction: ltr;
         }
-
         .volume-fill {
             height: 100%;
             width: 80%;
@@ -271,12 +235,9 @@
             border-radius: 10px;
             transition: width 0.1s;
         }
+        .volume-track:hover .volume-fill { background: #1db954; }
 
-        .volume-track:hover .volume-fill {
-            background: #1db954;
-        }
-
-        /* ----- فوتر ----- */
+        /* ----- Footer ----- */
         .footer {
             text-align: center;
             padding-top: 4px;
@@ -287,43 +248,18 @@
             user-select: none;
             flex-shrink: 0;
         }
+        .footer span { color: rgba(255, 255, 255, 0.25); }
 
-        .footer span {
-            color: rgba(255, 255, 255, 0.25);
-        }
-
-        /* ===== واکنش‌گرایی ===== */
+        /* ----- Responsive ----- */
         @media (max-width: 480px) {
-            .player-card {
-                padding: 20px 16px 22px;
-            }
-            .track-info .title {
-                font-size: 18px;
-            }
-            .controls {
-                gap: 16px;
-            }
-            .controls button {
-                width: 38px;
-                height: 38px;
-                font-size: 18px;
-                padding: 4px;
-            }
-            .controls .play-btn {
-                width: 52px;
-                height: 52px;
-                font-size: 26px;
-            }
-            .artwork-wrapper {
-                border-radius: 16px;
-                margin-bottom: 20px;
-                max-width: 320px;
-            }
-            .footer {
-                font-size: 9px;
-            }
+            .player-card { padding: 20px 16px 22px; }
+            .track-info .title { font-size: 18px; }
+            .controls { gap: 16px; }
+            .controls button { width: 38px; height: 38px; font-size: 18px; padding: 4px; }
+            .controls .play-btn { width: 52px; height: 52px; font-size: 26px; }
+            .artwork-wrapper { border-radius: 16px; margin-bottom: 20px; max-width: 320px; }
+            .footer { font-size: 9px; }
         }
-
         @media (min-width: 768px) {
             .player-card {
                 border-radius: 32px;
@@ -333,16 +269,11 @@
                 box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.06);
                 border: 1px solid rgba(255, 255, 255, 0.03);
             }
-            .artwork-wrapper {
-                max-width: 100%;
-            }
+            .artwork-wrapper { max-width: 100%; }
         }
+        ::-webkit-scrollbar { display: none; }
 
-        ::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* دکمه تمام‌صفحه (فقط در موبایل) */
+        /* Fullscreen Button (Mobile) */
         .fullscreen-btn {
             position: fixed;
             bottom: 20px;
@@ -363,373 +294,327 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
         }
-
         .fullscreen-btn:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
         }
-
-        @media (max-width: 768px) {
-            .fullscreen-btn {
-                display: flex;
-            }
-        }
-
-        /* حالت تمام‌صفحه واقعی */
-        .player-card:-webkit-full-screen {
-            border-radius: 0 !important;
-            padding: 28px 26px 30px !important;
-        }
-
+        @media (max-width: 768px) { .fullscreen-btn { display: flex; } }
+        .player-card:-webkit-full-screen,
         .player-card:fullscreen {
             border-radius: 0 !important;
             padding: 28px 26px 30px !important;
         }
     </style>
 </head>
-
 <body>
-    <div class="player-card" id="playerCard">
-        <!-- هدر -->
-        <div class="player-header">
-            <span class="brand">🎧 <span>PROMID</span>MUSIC</span>
-        </div>
 
-        <!-- کاور (تصویر PARAMATMA) -->
-        <div class="artwork-wrapper">
-            <img id="artworkImage" src="https://raw.githubusercontent.com/promidrecordings/promidrecordings.github.io/main/player/assets/PARAMATMA.jpg" alt="Artwork">
-        </div>
+<div class="player-card" id="playerCard">
+    <div class="player-header">
+        <span class="brand">🎧 <span>PROMID</span>MUSIC</span>
+    </div>
 
-        <!-- اطلاعات آهنگ -->
-        <div class="track-info">
-            <div class="title" id="trackTitle">PARAMATMA</div>
-            <div class="artist" id="trackArtist">PrOmid</div>
-        </div>
+    <div class="artwork-wrapper">
+        <img id="artworkImage" src="https://raw.githubusercontent.com/promidrecordings/promidrecordings.github.io/main/player/assets/PARAMATMA.jpg" alt="Artwork">
+    </div>
 
-        <!-- نوار پیشرفت -->
-        <div class="progress-section">
-            <span class="time" id="currentTime">0:00</span>
-            <div class="progress-track" id="progressTrack">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <span class="time" id="totalTime">0:00</span>
-        </div>
+    <div class="track-info">
+        <div class="title" id="trackTitle">PARAMATMA</div>
+        <div class="artist" id="trackArtist">PrOmid</div>
+    </div>
 
-        <!-- دکمه‌ها -->
-        <div class="controls">
-            <button id="prevBtn" aria-label="قبلی" title="۱۰ ثانیه قبل">⏮</button>
-            <button class="play-btn" id="playBtn" aria-label="پخش یا توقف">▶</button>
-            <button id="nextBtn" aria-label="بعدی" title="۱۰ ثانیه بعد">⏭</button>
+    <div class="progress-section">
+        <span class="time" id="currentTime">0:00</span>
+        <div class="progress-track" id="progressTrack">
+            <div class="progress-fill" id="progressFill"></div>
         </div>
+        <span class="time" id="totalTime">0:00</span>
+    </div>
 
-        <!-- کنترل صدا -->
-        <div class="volume-section">
-            <span class="icon">🔊</span>
-            <div class="volume-track" id="volumeTrack">
-                <div class="volume-fill" id="volumeFill"></div>
-            </div>
-        </div>
+    <div class="controls">
+        <button id="prevBtn" aria-label="قبلی" title="۱۰ ثانیه قبل">⏮</button>
+        <button class="play-btn" id="playBtn" aria-label="پخش یا توقف">▶</button>
+        <button id="nextBtn" aria-label="بعدی" title="۱۰ ثانیه بعد">⏭</button>
+    </div>
 
-        <!-- فوتر -->
-        <div class="footer">
-            <span>© PROMIDMUSIC</span>
+    <div class="volume-section">
+        <span class="icon">🔊</span>
+        <div class="volume-track" id="volumeTrack">
+            <div class="volume-fill" id="volumeFill"></div>
         </div>
     </div>
 
-    <!-- دکمه تمام‌صفحه -->
-    <button class="fullscreen-btn" id="fullscreenBtn">
-        <span>⛶</span> تمام‌صفحه
-    </button>
+    <div class="footer">
+        <span>© PROMIDMUSIC</span>
+    </div>
+</div>
 
-    <!-- المنت صوتی (فایل PARAMATMA) -->
-    <audio id="audioPlayer" preload="metadata">
-        <source src="https://raw.githubusercontent.com/promidrecordings/promidrecordings.github.io/main/player/assets/PARAMATMA%20.mp3" type="audio/mpeg">
-        مرورگر شما از پلیر صوتی پشتیبانی نمی‌کند.
-    </audio>
+<button class="fullscreen-btn" id="fullscreenBtn">
+    <span>⛶</span> تمام‌صفحه
+</button>
 
-    <script>
-        // =============================================
-        //  اسکریپت کامل با قابلیت تمام‌صفحه واقعی
-        // =============================================
+<audio id="audioPlayer" preload="metadata">
+    <source src="https://raw.githubusercontent.com/promidrecordings/promidrecordings.github.io/main/player/assets/PARAMATMA%20.mp3" type="audio/mpeg">
+    مرورگر شما از پلیر صوتی پشتیبانی نمی‌کند.
+</audio>
 
-        // ----- عناصر DOM -----
-        const audio = document.getElementById('audioPlayer');
-        const playBtn = document.getElementById('playBtn');
-        const progressFill = document.getElementById('progressFill');
-        const progressTrack = document.getElementById('progressTrack');
-        const currentTimeEl = document.getElementById('currentTime');
-        const totalTimeEl = document.getElementById('totalTime');
-        const volumeFill = document.getElementById('volumeFill');
-        const volumeTrack = document.getElementById('volumeTrack');
-        const artworkImg = document.getElementById('artworkImage');
-        const trackTitle = document.getElementById('trackTitle');
-        const trackArtist = document.getElementById('trackArtist');
-        const playerCard = document.getElementById('playerCard');
-        const fullscreenBtn = document.getElementById('fullscreenBtn');
+<script>
+    // ----- عناصر DOM -----
+    const audio = document.getElementById('audioPlayer');
+    const playBtn = document.getElementById('playBtn');
+    const progressFill = document.getElementById('progressFill');
+    const progressTrack = document.getElementById('progressTrack');
+    const currentTimeEl = document.getElementById('currentTime');
+    const totalTimeEl = document.getElementById('totalTime');
+    const volumeFill = document.getElementById('volumeFill');
+    const volumeTrack = document.getElementById('volumeTrack');
+    const artworkImg = document.getElementById('artworkImage');
+    const playerCard = document.getElementById('playerCard');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
 
-        // =============================================
-        //  ترفند مخفی کردن نوار مرورگر (روش استاندارد)
-        // =============================================
+    // =============================================
+    //  تنظیم ارتفاع Viewport و مخفی کردن نوار مرورگر
+    // =============================================
+    function setVH() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setVH();
+    window.addEventListener('resize', setVH);
 
-        // تنظیم ارتفاع viewport
-        function setVH() {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
+    function hideBrowserUI() {
+        window.scrollTo(0, 1);
+        setTimeout(() => { window.scrollTo(0, 0); }, 50);
+    }
+
+    window.addEventListener('load', () => {
+        setTimeout(hideBrowserUI, 100);
+        setTimeout(hideBrowserUI, 500);
+    });
+    window.addEventListener('orientationchange', () => {
+        setTimeout(hideBrowserUI, 300);
+        setTimeout(hideBrowserUI, 600);
+    });
+    document.addEventListener('click', hideBrowserUI);
+    document.addEventListener('touchstart', hideBrowserUI, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+        if (e.target.closest('.progress-track') || e.target.closest('.volume-track')) return;
+        e.preventDefault();
+    }, { passive: false });
+
+    // =============================================
+    //  حالت تمام‌صفحه
+    // =============================================
+    async function toggleFullscreen() {
+        try {
+            if (!document.fullscreenElement) {
+                await document.documentElement.requestFullscreen();
+                fullscreenBtn.innerHTML = '<span>✕</span> خروج';
+            } else {
+                if (document.exitFullscreen) {
+                    await document.exitFullscreen();
+                    fullscreenBtn.innerHTML = '<span>⛶</span> تمام‌صفحه';
+                }
+            }
+        } catch (err) {
+            console.warn('خطا در تغییر حالت تمام‌صفحه:', err);
+            hideBrowserUI();
+            alert('لطفاً برای مشاهده تمام‌صفحه، روی دکمه "تمام‌صفحه" در مرورگر کلیک کنید.');
         }
-        setVH();
-        window.addEventListener('resize', setVH);
-
-        // مخفی کردن تولبار با اسکرول
-        function hideBrowserUI() {
-            window.scrollTo(0, 1);
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-            }, 50);
+    }
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            fullscreenBtn.innerHTML = '<span>⛶</span> تمام‌صفحه';
         }
+    });
 
-        window.addEventListener('load', () => {
-            setTimeout(hideBrowserUI, 100);
-            setTimeout(hideBrowserUI, 500);
+    // =============================================
+    //  کنترل پخش و توقف
+    // =============================================
+    function togglePlay() {
+        if (audio.paused) {
+            audio.play().catch(e => console.warn('خطا در پخش:', e));
+            playBtn.textContent = '⏸';
+            playBtn.classList.add('playing');
+            updateMediaSession(true);
+        } else {
+            audio.pause();
+            playBtn.textContent = '▶';
+            playBtn.classList.remove('playing');
+            updateMediaSession(false);
+        }
+    }
+    playBtn.addEventListener('click', togglePlay);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' && !e.repeat) {
+            e.preventDefault();
+            togglePlay();
+        }
+    });
+
+    // =============================================
+    //  مدیریت زمان و نوار پیشرفت
+    // =============================================
+    function formatTime(seconds) {
+        if (isNaN(seconds) || seconds === Infinity) return '0:00';
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
+        return min + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    audio.addEventListener('timeupdate', () => {
+        const percent = (audio.currentTime / audio.duration) * 100 || 0;
+        progressFill.style.width = Math.min(percent, 100) + '%';
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.setPositionState({
+                duration: audio.duration || 0,
+                position: audio.currentTime || 0,
+                playbackRate: audio.playbackRate,
+            });
+        }
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+        totalTimeEl.textContent = formatTime(audio.duration);
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.setPositionState({
+                duration: audio.duration || 0,
+                position: 0,
+                playbackRate: audio.playbackRate,
+            });
+        }
+    });
+
+    progressTrack.addEventListener('click', (e) => {
+        const rect = progressTrack.getBoundingClientRect();
+        const percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+        audio.currentTime = percent * audio.duration;
+    });
+
+    // =============================================
+    //  دکمه‌های جلو و عقب (۱۰ ثانیه)
+    // =============================================
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        audio.currentTime = Math.max(0, audio.currentTime - 10);
+    });
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+    });
+
+    // =============================================
+    //  کنترل صدا
+    // =============================================
+    audio.volume = 0.8;
+    volumeFill.style.width = '80%';
+    volumeTrack.addEventListener('click', (e) => {
+        const rect = volumeTrack.getBoundingClientRect();
+        const percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+        audio.volume = percent;
+        volumeFill.style.width = (percent * 100) + '%';
+    });
+
+    // =============================================
+    //  تغییر رنگ پس‌زمینه بر اساس کاور
+    // =============================================
+    function extractDominantColor(imageElement) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 20;
+        canvas.height = 20;
+        ctx.drawImage(imageElement, 0, 0, 20, 20);
+        const imageData = ctx.getImageData(0, 0, 20, 20).data;
+        let r = 0, g = 0, b = 0, count = 0;
+        for (let i = 0; i < imageData.length; i += 4) {
+            r += imageData[i];
+            g += imageData[i + 1];
+            b += imageData[i + 2];
+            count++;
+        }
+        r = Math.floor(r / count);
+        g = Math.floor(g / count);
+        b = Math.floor(b / count);
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    artworkImg.addEventListener('load', function() {
+        try {
+            const color = extractDominantColor(this);
+            document.body.style.backgroundColor = color;
+        } catch (e) {
+            console.log('⚠️ استخراج رنگ با مشکل مواجه شد.');
+        }
+    });
+
+    if (artworkImg.complete) {
+        artworkImg.dispatchEvent(new Event('load'));
+    }
+
+    // =============================================
+    //  Media Session API (صفحه قفل)
+    // =============================================
+    function updateMediaSession(isPlaying) {
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
+        }
+    }
+
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: 'PARAMATMA',
+            artist: 'PrOmid',
+            album: 'PARAMATMA',
+            artwork: [
+                {
+                    src: 'https://raw.githubusercontent.com/promidrecordings/promidrecordings.github.io/main/player/assets/PARAMATMA.jpg',
+                    sizes: '512x512',
+                    type: 'image/jpeg'
+                }
+            ]
         });
 
-        window.addEventListener('orientationchange', () => {
-            setTimeout(hideBrowserUI, 300);
-            setTimeout(hideBrowserUI, 600);
+        navigator.mediaSession.setActionHandler('play', () => {
+            audio.play();
+            playBtn.textContent = '⏸';
+            playBtn.classList.add('playing');
+            updateMediaSession(true);
         });
 
-        document.addEventListener('click', hideBrowserUI);
-        document.addEventListener('touchstart', hideBrowserUI, { passive: true });
+        navigator.mediaSession.setActionHandler('pause', () => {
+            audio.pause();
+            playBtn.textContent = '▶';
+            playBtn.classList.remove('playing');
+            updateMediaSession(false);
+        });
 
-        // جلوگیری از اسکرول پایین
-        document.addEventListener('touchmove', (e) => {
-            if (e.target.closest('.progress-track') || e.target.closest('.volume-track')) {
+        navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+            audio.currentTime = Math.max(0, audio.currentTime - (details.seekOffset || 10));
+        });
+
+        navigator.mediaSession.setActionHandler('seekforward', (details) => {
+            audio.currentTime = Math.min(audio.duration, audio.currentTime + (details.seekOffset || 10));
+        });
+
+        navigator.mediaSession.setActionHandler('seekto', (details) => {
+            if (details.fastSeek && 'fastSeek' in audio) {
+                audio.fastSeek(details.seekTime);
                 return;
             }
-            e.preventDefault();
-        }, { passive: false });
-
-        // =============================================
-        //  حالت تمام‌صفحه واقعی (Fullscreen API)
-        // =============================================
-
-        async function toggleFullscreen() {
-            try {
-                if (!document.fullscreenElement) {
-                    await document.documentElement.requestFullscreen();
-                    fullscreenBtn.textContent = '✕ خروج';
-                    fullscreenBtn.innerHTML = '<span>✕</span> خروج';
-                } else {
-                    if (document.exitFullscreen) {
-                        await document.exitFullscreen();
-                        fullscreenBtn.textContent = '⛶ تمام‌صفحه';
-                        fullscreenBtn.innerHTML = '<span>⛶</span> تمام‌صفحه';
-                    }
-                }
-            } catch (err) {
-                console.warn('خطا در تغییر حالت تمام‌صفحه:', err);
-                hideBrowserUI();
-                alert('لطفاً برای مشاهده تمام‌صفحه، روی دکمه "تمام‌صفحه" در مرورگر کلیک کنید.');
-            }
-        }
-
-        fullscreenBtn.addEventListener('click', toggleFullscreen);
-
-        document.addEventListener('fullscreenchange', () => {
-            if (!document.fullscreenElement) {
-                fullscreenBtn.textContent = '⛶ تمام‌صفحه';
-                fullscreenBtn.innerHTML = '<span>⛶</span> تمام‌صفحه';
-            }
+            audio.currentTime = details.seekTime;
         });
+    }
 
-        // =============================================
-        //  کنترل پخش و توقف
-        // =============================================
-        function togglePlay() {
-            if (audio.paused) {
-                audio.play().catch(e => console.warn('خطا در پخش:', e));
-                playBtn.textContent = '⏸';
-                playBtn.classList.add('playing');
-                updateMediaSession(true);
-            } else {
-                audio.pause();
-                playBtn.textContent = '▶';
-                playBtn.classList.remove('playing');
-                updateMediaSession(false);
-            }
-        }
+    // =============================================
+    //  مدیریت خطاها
+    // =============================================
+    audio.addEventListener('error', (e) => {
+        console.warn('⚠️ خطا در پخش فایل صوتی:', e);
+    });
 
-        playBtn.addEventListener('click', togglePlay);
+    console.log('🎵 پلیر PARAMATMA با موفقیت راه‌اندازی شد!');
+</script>
 
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space' && !e.repeat) {
-                e.preventDefault();
-                togglePlay();
-            }
-        });
-
-        // =============================================
-        //  مدیریت زمان و نوار پیشرفت
-        // =============================================
-        function formatTime(seconds) {
-            if (isNaN(seconds) || seconds === Infinity) return '0:00';
-            const min = Math.floor(seconds / 60);
-            const sec = Math.floor(seconds % 60);
-            return min + ':' + (sec < 10 ? '0' : '') + sec;
-        }
-
-        audio.addEventListener('timeupdate', () => {
-            const percent = (audio.currentTime / audio.duration) * 100 || 0;
-            progressFill.style.width = Math.min(percent, 100) + '%';
-            currentTimeEl.textContent = formatTime(audio.currentTime);
-
-            if ('mediaSession' in navigator) {
-                navigator.mediaSession.setPositionState({
-                    duration: audio.duration || 0,
-                    position: audio.currentTime || 0,
-                    playbackRate: audio.playbackRate,
-                });
-            }
-        });
-
-        audio.addEventListener('loadedmetadata', () => {
-            totalTimeEl.textContent = formatTime(audio.duration);
-            if ('mediaSession' in navigator) {
-                navigator.mediaSession.setPositionState({
-                    duration: audio.duration || 0,
-                    position: 0,
-                    playbackRate: audio.playbackRate,
-                });
-            }
-        });
-
-        progressTrack.addEventListener('click', (e) => {
-            const rect = progressTrack.getBoundingClientRect();
-            const percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
-            audio.currentTime = percent * audio.duration;
-        });
-
-        // =============================================
-        //  دکمه‌های جلو و عقب
-        // =============================================
-        document.getElementById('prevBtn').addEventListener('click', () => {
-            audio.currentTime = Math.max(0, audio.currentTime - 10);
-        });
-
-        document.getElementById('nextBtn').addEventListener('click', () => {
-            audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
-        });
-
-        // =============================================
-        //  کنترل صدا
-        // =============================================
-        audio.volume = 0.8;
-        volumeFill.style.width = '80%';
-
-        volumeTrack.addEventListener('click', (e) => {
-            const rect = volumeTrack.getBoundingClientRect();
-            const percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
-            audio.volume = percent;
-            volumeFill.style.width = (percent * 100) + '%';
-        });
-
-        // =============================================
-        //  تغییر رنگ پس‌زمینه بر اساس کاور
-        // =============================================
-        function extractDominantColor(imageElement) {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = 20;
-            canvas.height = 20;
-            ctx.drawImage(imageElement, 0, 0, 20, 20);
-            const imageData = ctx.getImageData(0, 0, 20, 20).data;
-            let r = 0, g = 0, b = 0, count = 0;
-            for (let i = 0; i < imageData.length; i += 4) {
-                r += imageData[i];
-                g += imageData[i + 1];
-                b += imageData[i + 2];
-                count++;
-            }
-            r = Math.floor(r / count);
-            g = Math.floor(g / count);
-            b = Math.floor(b / count);
-            return `rgb(${r}, ${g}, ${b})`;
-        }
-
-        artworkImg.addEventListener('load', function() {
-            try {
-                const color = extractDominantColor(this);
-                document.body.style.backgroundColor = color;
-            } catch (e) {
-                console.log('⚠️ استخراج رنگ با مشکل مواجه شد.');
-            }
-        });
-
-        if (artworkImg.complete) {
-            artworkImg.dispatchEvent(new Event('load'));
-        }
-
-        // =============================================
-        //  Media Session API (صفحه قفل)
-        // =============================================
-        function updateMediaSession(isPlaying) {
-            if ('mediaSession' in navigator) {
-                navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
-            }
-        }
-
-        if ('mediaSession' in navigator) {
-            navigator.mediaSession.metadata = new MediaMetadata({
-                title: trackTitle.textContent,
-                artist: trackArtist.textContent,
-                album: 'PARAMATMA',
-                artwork: [
-                    {
-                        src: 'https://raw.githubusercontent.com/promidrecordings/promidrecordings.github.io/main/player/assets/PARAMATMA.jpg',
-                        sizes: '512x512',
-                        type: 'image/jpeg'
-                    }
-                ]
-            });
-
-            navigator.mediaSession.setActionHandler('play', () => {
-                audio.play();
-                playBtn.textContent = '⏸';
-                playBtn.classList.add('playing');
-                updateMediaSession(true);
-            });
-
-            navigator.mediaSession.setActionHandler('pause', () => {
-                audio.pause();
-                playBtn.textContent = '▶';
-                playBtn.classList.remove('playing');
-                updateMediaSession(false);
-            });
-
-            navigator.mediaSession.setActionHandler('seekbackward', (details) => {
-                audio.currentTime = Math.max(0, audio.currentTime - (details.seekOffset || 10));
-            });
-
-            navigator.mediaSession.setActionHandler('seekforward', (details) => {
-                audio.currentTime = Math.min(audio.duration, audio.currentTime + (details.seekOffset || 10));
-            });
-
-            navigator.mediaSession.setActionHandler('seekto', (details) => {
-                if (details.fastSeek && 'fastSeek' in audio) {
-                    audio.fastSeek(details.seekTime);
-                    return;
-                }
-                audio.currentTime = details.seekTime;
-            });
-        }
-
-        // =============================================
-        //  مدیریت خطاها
-        // =============================================
-        audio.addEventListener('error', (e) => {
-            console.warn('⚠️ خطا در پخش فایل صوتی:', e);
-        });
-
-        console.log('🎵 پلیر PARAMATMA با موفقیت راه‌اندازی شد!');
-    </script>
 </body>
 </html>

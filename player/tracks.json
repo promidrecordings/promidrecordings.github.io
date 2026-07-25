@@ -1,18 +1,26 @@
 [
   {
     "id": 1,
-    "title": "Guitar Del Sol",
+    "title": "LAST LETTER",
     "artist": "PrOmid",
-    "slug": "guitar-del-sol",
-    "cover": "assets/track1.jpg",
-    "src": "assets/track1.mp3"
+    "slug": "last-letter",
+    "cover": "assets/last-letter.jpg",
+    "src": "assets/last-letter.mp3"
   },
   {
     "id": 2,
-    "title": "Pause Hour",
+    "title": "PARAMATMA",
     "artist": "PrOmid",
-    "slug": "pause-hour",
-    "cover": "assets/track2.jpg",
-    "src": "assets/track2.mp3"
+    "slug": "paramatma",
+    "cover": "assets/paramatma.jpg",
+    "src": "assets/paramatma.mp3"
+  },
+  {
+    "id": 3,
+    "title": "solhe abadi",
+    "artist": "PrOmid",
+    "slug": "solhe-abadi",
+    "cover": "assets/solhe-abadi.jpg",
+    "src": "assets/solhe-abadi.mp3"
   }
 ]

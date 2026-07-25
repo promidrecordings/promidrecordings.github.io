@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "Guitar Del Sol",
+    "artist": "PrOmid",
+    "slug": "guitar-del-sol",
+    "cover": "assets/track1.jpg",
+    "src": "assets/track1.mp3"
+  },
+  {
+    "id": 2,
+    "title": "Pause Hour",
+    "artist": "PrOmid",
+    "slug": "pause-hour",
+    "cover": "assets/track2.jpg",
+    "src": "assets/track2.mp3"
+  }
+]

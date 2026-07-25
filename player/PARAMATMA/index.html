@@ -6,10 +6,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>PARAMATMA | PrOmid</title>
-
     <style>
         /* ----- Reset & Base ----- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         html, body {
             width: 100%;
             height: 100%;
@@ -250,16 +254,42 @@
         }
         .footer span { color: rgba(255, 255, 255, 0.25); }
 
-        /* ----- Responsive ----- */
+        /* ----- Responsive for mobile (exactly like desktop) ----- */
         @media (max-width: 480px) {
-            .player-card { padding: 20px 16px 22px; }
-            .track-info .title { font-size: 18px; }
-            .controls { gap: 16px; }
-            .controls button { width: 38px; height: 38px; font-size: 18px; padding: 4px; }
-            .controls .play-btn { width: 52px; height: 52px; font-size: 26px; }
-            .artwork-wrapper { border-radius: 16px; margin-bottom: 20px; max-width: 320px; }
-            .footer { font-size: 9px; }
+            .player-card {
+                padding: 28px 26px 30px; /* Same as desktop */
+                justify-content: center;
+            }
+            .track-info .title {
+                font-size: 21px; /* Same as desktop */
+            }
+            .controls {
+                gap: 28px; /* Same as desktop */
+            }
+            .controls button {
+                width: 44px;
+                height: 44px;
+                font-size: 22px;
+                padding: 8px;
+            }
+            .controls .play-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+            }
+            .artwork-wrapper {
+                border-radius: 20px;
+                margin-bottom: 26px;
+                max-width: 420px;
+            }
+            .footer {
+                font-size: 11px;
+            }
+            .volume-section {
+                margin-bottom: 16px;
+            }
         }
+
         @media (min-width: 768px) {
             .player-card {
                 border-radius: 32px;
@@ -271,9 +301,10 @@
             }
             .artwork-wrapper { max-width: 100%; }
         }
+
         ::-webkit-scrollbar { display: none; }
 
-        /* Fullscreen Button (Mobile) */
+        /* Fullscreen Button (Mobile) - Optional, can be removed */
         .fullscreen-btn {
             position: fixed;
             bottom: 20px;
@@ -298,7 +329,11 @@
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
         }
-        @media (max-width: 768px) { .fullscreen-btn { display: flex; } }
+        @media (max-width: 768px) {
+            .fullscreen-btn {
+                display: none; /* Hide on mobile for a clean look */
+            }
+        }
         .player-card:-webkit-full-screen,
         .player-card:fullscreen {
             border-radius: 0 !important;
@@ -348,16 +383,17 @@
     </div>
 </div>
 
-<button class="fullscreen-btn" id="fullscreenBtn">
-    <span>⛶</span> تمام‌صفحه
-</button>
-
+<!-- Audio element -->
 <audio id="audioPlayer" preload="metadata">
     <source src="https://raw.githubusercontent.com/promidrecordings/promidrecordings.github.io/main/player/assets/PARAMATMA%20.mp3" type="audio/mpeg">
-    مرورگر شما از پلیر صوتی پشتیبانی نمی‌کند.
+    <!-- پیام خطای مرورگر حذف شد -->
 </audio>
 
 <script>
+    // =============================================
+    //  اسکریپت کامل پلیر
+    // =============================================
+
     // ----- عناصر DOM -----
     const audio = document.getElementById('audioPlayer');
     const playBtn = document.getElementById('playBtn');
@@ -368,8 +404,6 @@
     const volumeFill = document.getElementById('volumeFill');
     const volumeTrack = document.getElementById('volumeTrack');
     const artworkImg = document.getElementById('artworkImage');
-    const playerCard = document.getElementById('playerCard');
-    const fullscreenBtn = document.getElementById('fullscreenBtn');
 
     // =============================================
     //  تنظیم ارتفاع Viewport و مخفی کردن نوار مرورگر
@@ -401,33 +435,6 @@
         if (e.target.closest('.progress-track') || e.target.closest('.volume-track')) return;
         e.preventDefault();
     }, { passive: false });
-
-    // =============================================
-    //  حالت تمام‌صفحه
-    // =============================================
-    async function toggleFullscreen() {
-        try {
-            if (!document.fullscreenElement) {
-                await document.documentElement.requestFullscreen();
-                fullscreenBtn.innerHTML = '<span>✕</span> خروج';
-            } else {
-                if (document.exitFullscreen) {
-                    await document.exitFullscreen();
-                    fullscreenBtn.innerHTML = '<span>⛶</span> تمام‌صفحه';
-                }
-            }
-        } catch (err) {
-            console.warn('خطا در تغییر حالت تمام‌صفحه:', err);
-            hideBrowserUI();
-            alert('لطفاً برای مشاهده تمام‌صفحه، روی دکمه "تمام‌صفحه" در مرورگر کلیک کنید.');
-        }
-    }
-    fullscreenBtn.addEventListener('click', toggleFullscreen);
-    document.addEventListener('fullscreenchange', () => {
-        if (!document.fullscreenElement) {
-            fullscreenBtn.innerHTML = '<span>⛶</span> تمام‌صفحه';
-        }
-    });
 
     // =============================================
     //  کنترل پخش و توقف
@@ -615,6 +622,5 @@
 
     console.log('🎵 پلیر PARAMATMA با موفقیت راه‌اندازی شد!');
 </script>
-
 </body>
 </html>
